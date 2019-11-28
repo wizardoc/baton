@@ -3,8 +3,13 @@
 body,
 html {
   margin: 0;
+  height: 100%;
 }
 
 * {
   font-weight: 200;
+}
+
+.success-snackbar {
+  background: #3f51b5;
 }
