@@ -1,0 +1,32 @@
+<mat-card class="login-card">
+  <mat-card-title>
+    登录
+  </mat-card-title>
+  <mat-card-subtitle>
+    Welcome to deploy platform for Wizard!
+  </mat-card-subtitle>
+  <mat-card-content>
+    <form class="login-form" [formGroup]="loginData">
+      <div class="form-item">
+        <mat-icon>mood</mat-icon>
+        <mat-form-field class="input">
+          <input matInput placeholder="username" formControlName="username" />
+        </mat-form-field>
+      </div>
+      <div class="form-item">
+        <mat-icon>toys</mat-icon>
+        <mat-form-field class="input">
+          <input
+            type="password"
+            matInput
+            placeholder="password"
+            formControlName="password"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions class="footer">
+    <button mat-button (click)="onSubmit()">登录</button>
+  </mat-card-actions>
+</mat-card>

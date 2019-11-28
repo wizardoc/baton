@@ -1,0 +1,29 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .input {
+    width: 230px;
+    margin-left: 10px;
+  }
+
+  .form-item {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.login-card {
+  width: 300px;
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.active-icon {
+  color: #3f51b5;
+}
