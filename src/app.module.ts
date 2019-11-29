@@ -12,7 +12,8 @@ import {
   MatIconModule,
   MatRippleModule,
   MatButtonModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatButtonToggleModule
 } from "@angular/material";
 import { LoginCardComponent } from "./app/login-card/login-card.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -20,7 +21,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { HttpInfo } from "./services";
 import { UserService } from "./services/user-service";
-import { PanelComponent } from "./panel/panel.component";
+import { PanelComponent } from "./app/panel/panel.component";
 import { EntryComponent } from "./app/entry/entry.component";
 import { MainCanActiveGuard } from "./guards/main/active";
 
@@ -30,7 +31,8 @@ import { MainCanActiveGuard } from "./guards/main/active";
     HeaderBarComponent,
     LoginCardComponent,
     PanelComponent,
-    EntryComponent
+    EntryComponent,
+    PanelComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { MainCanActiveGuard } from "./guards/main/active";
     MatButtonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatButtonToggleModule
   ],
   providers: [HttpInfo, UserService, MainCanActiveGuard],
   bootstrap: [AppComponent]

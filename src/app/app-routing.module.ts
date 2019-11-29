@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
-import { PanelComponent } from "src/panel/panel.component";
+import { PanelComponent } from "./panel/panel.component";
 import { AppComponent } from "./app.component";
 import { EntryComponent } from "./entry/entry.component";
 import { MainCanActiveGuard } from "../guards/main/active";

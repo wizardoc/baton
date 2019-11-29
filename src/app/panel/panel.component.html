@@ -1,0 +1,78 @@
+<div class="panel-container">
+  <div class="deploy-container">
+    <mat-card class="project-card">
+      <mat-card-title>
+        <mat-icon>filter_drama</mat-icon>
+        项目
+      </mat-card-title>
+      <mat-card-subtitle>
+        Projects
+      </mat-card-subtitle>
+      <mat-card-content>
+        <mat-card
+          *ngFor="let project of projects"
+          class="project-item-card"
+          matRipple
+          [matRippleTrigger]="trigger"
+          [class.selected]="selectedProject.name === project.name"
+          (click)="handleProjectCardClick(project)"
+        >
+          <div>{{ project.name }}</div>
+          <div>{{ project.description }}</div>
+        </mat-card>
+      </mat-card-content>
+      <mat-card-actions class="project-footer">
+        <button mat-button mat-raised-button>部署</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="task-card">
+      <mat-card-title>
+        <mat-icon>timer</mat-icon>
+        任务池
+      </mat-card-title>
+      <mat-card-subtitle>
+        tasks pool
+      </mat-card-subtitle>
+      <mat-card-content>
+        <div class="task-nothing">
+          <mat-icon>
+            desktop_windows
+          </mat-icon>
+          目前暂无部署任务
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <mat-card class="logger-card">
+    <mat-card-title>
+      <mat-icon>
+        dvr
+      </mat-icon>
+      日志
+    </mat-card-title>
+    <mat-card-subtitle>
+      logs
+    </mat-card-subtitle>
+    <mat-card-content>
+      <mat-button-toggle-group>
+        <mat-button-toggle
+          *ngFor="let type of selectedProject.logType"
+          [value]="type"
+          [class.selected]="type === selectedLogType"
+          (click)="handleLogTypeChange(type)"
+        >
+          {{ type }}
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="notify-card">
+    <mat-card-title>
+      <mat-icon>notifications_none</mat-icon>
+      通知
+    </mat-card-title>
+    <mat-card-subtitle>
+      notify
+    </mat-card-subtitle>
+  </mat-card>
+</div>
