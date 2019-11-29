@@ -22,7 +22,9 @@
         </mat-card>
       </mat-card-content>
       <mat-card-actions class="project-footer">
-        <button mat-button mat-raised-button>部署</button>
+        <button mat-button mat-raised-button (click)="handleDeployClick()">
+          部署
+        </button>
       </mat-card-actions>
     </mat-card>
     <mat-card class="task-card">
@@ -33,8 +35,12 @@
       <mat-card-subtitle>
         tasks pool
       </mat-card-subtitle>
-      <mat-card-content>
-        <div class="task-nothing">
+      <mat-card-content class="task-content">
+        <mat-card *ngFor="let task of tasks" class="task-item-card">
+          <span>正在部署中...</span>
+          <span>{{ task.projectName }}</span>
+        </mat-card>
+        <div class="task-nothing" *ngIf="tasks.length === 0">
           <mat-icon>
             desktop_windows
           </mat-icon>
@@ -75,7 +81,15 @@
       notify
     </mat-card-subtitle>
     <mat-card-content class="notify-content">
-      <div class="notify-nothing">
+      <mat-card
+        *ngFor="let notify of notifications"
+        [ngClass]="notify.type"
+        class="notify-item-card"
+      >
+        <span>{{ notify.text }}</span>
+        <span>{{ notify.projectName }} </span>
+      </mat-card>
+      <div class="notify-nothing" *ngIf="notifications.length === 0">
         <mat-icon>nights_stay</mat-icon>
         <span>通知不做持久化</span>
       </div>

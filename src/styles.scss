@@ -13,3 +13,24 @@ html {
 .success-snackbar {
   background: #3f51b5;
 }
+
+.notify-error {
+  background: #c0392b;
+  color: white;
+  // text-shadow: 1px 1px 0 black;
+}
+
+.notify-info {
+  background: #2980b9;
+  color: white;
+}
+
+.notify-success {
+  background: #27ae60;
+  color: white;
+}
+
+.notify-warning {
+  background: #f39c12;
+  color: white;
+}

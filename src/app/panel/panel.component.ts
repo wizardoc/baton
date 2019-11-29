@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { WebSocketService, HttpInfo } from "src/services";
+import { HttpClient } from "@angular/common/http";
 
 type LogType = "docker" | "dispatcher";
 
@@ -33,7 +35,11 @@ export class PanelComponent implements OnInit {
   selectedProject: Project = this.projects[0];
   selectedLogType: LogType = "dispatcher";
 
-  constructor() {}
+  constructor(
+    private websocketService: WebSocketService,
+    private httpClient: HttpClient,
+    private httpInfo: HttpInfo
+  ) {}
 
   ngOnInit() {}
 
@@ -43,5 +49,21 @@ export class PanelComponent implements OnInit {
 
   handleLogTypeChange(logType: LogType) {
     this.selectedLogType = logType;
+  }
+
+  handleDeployClick() {
+    this.httpClient
+      .put(this.httpInfo.path(`/deploy/${this.selectedProject.type}`), {})
+      .subscribe(data => console.info(data));
+  }
+
+  get notifications() {
+    return this.websocketService.notifications.filter(
+      ({ projectName }) => projectName === this.selectedProject.name
+    );
+  }
+
+  get tasks() {
+    return this.websocketService.tasks;
   }
 }

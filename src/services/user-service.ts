@@ -9,7 +9,11 @@ export class UserService {
   constructor(private httpClient: HttpClient, private httpInfo: HttpInfo) {}
 
   get isLogin(): boolean {
-    return !!localStorage.getItem("jwt");
+    return !!this.token;
+  }
+
+  get token(): string | null {
+    return localStorage.getItem("jwt");
   }
 
   login(data: LoginPayload) {

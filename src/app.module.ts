@@ -18,12 +18,14 @@ import {
 import { LoginCardComponent } from "./app/login-card/login-card.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
-import { HttpInfo } from "./services";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpInfo, WebSocketService } from "./services";
 import { UserService } from "./services/user-service";
 import { PanelComponent } from "./app/panel/panel.component";
 import { EntryComponent } from "./app/entry/entry.component";
 import { MainCanActiveGuard } from "./guards/main/active";
+import { AuthInterceptor } from "./interceptors/auth-interceptor";
+import { ProjectName } from "./pipes/project-name";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { MainCanActiveGuard } from "./guards/main/active";
     LoginCardComponent,
     PanelComponent,
     EntryComponent,
-    PanelComponent
+    PanelComponent,
+    ProjectName
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,17 @@ import { MainCanActiveGuard } from "./guards/main/active";
     MatSnackBarModule,
     MatButtonToggleModule
   ],
-  providers: [HttpInfo, UserService, MainCanActiveGuard],
+  providers: [
+    HttpInfo,
+    UserService,
+    MainCanActiveGuard,
+    WebSocketService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

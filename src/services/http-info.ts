@@ -3,13 +3,13 @@ import HTTP_INFO from "../.config/server.json";
 
 @Injectable()
 export class HttpInfo {
-  get baseName(): string {
+  baseName(protocol?: string): string {
     const { host, port } = HTTP_INFO;
 
-    return `http://${host}:${port}`;
+    return `${protocol || "http"}://${host}:${port}`;
   }
 
-  path(path: string): string {
-    return `${this.baseName}${path}`;
+  path(path: string, protocol?: string): string {
+    return `${this.baseName(protocol)}${path}`;
   }
 }
