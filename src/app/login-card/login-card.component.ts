@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
-import { HttpRequest, HttpClient } from "@angular/common/http";
-import { HttpInfo } from "src/services";
-import { LoginPayload, CommonResponse } from "src/dtos";
 import { UserService } from "src/services/user-service";
 import { MatSnackBar } from "@angular/material";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "login-card",
@@ -19,7 +17,8 @@ export class LoginCardComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -32,9 +31,10 @@ export class LoginCardComponent implements OnInit {
         localStorage.setItem("jwt", data);
 
         this.snackBar.open("登录成功!", undefined, {
-          duration: 1000,
+          duration: 3000,
           panelClass: ["success-snackbar"]
         });
+        this.router.navigate(["/main"]);
       },
       ({ status }) => {
         if (status === 401) {

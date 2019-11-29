@@ -8,6 +8,10 @@ import { Observable } from "rxjs";
 export class UserService {
   constructor(private httpClient: HttpClient, private httpInfo: HttpInfo) {}
 
+  get isLogin(): boolean {
+    return !!localStorage.getItem("jwt");
+  }
+
   login(data: LoginPayload) {
     return this.httpClient.post<CommonResponse<string>>(
       this.httpInfo.path("/account/login"),

@@ -20,9 +20,18 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { HttpInfo } from "./services";
 import { UserService } from "./services/user-service";
+import { PanelComponent } from "./panel/panel.component";
+import { EntryComponent } from "./app/entry/entry.component";
+import { MainCanActiveGuard } from "./guards/main/active";
 
 @NgModule({
-  declarations: [AppComponent, HeaderBarComponent, LoginCardComponent],
+  declarations: [
+    AppComponent,
+    HeaderBarComponent,
+    LoginCardComponent,
+    PanelComponent,
+    EntryComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -38,7 +47,7 @@ import { UserService } from "./services/user-service";
     HttpClientModule,
     MatSnackBarModule
   ],
-  providers: [HttpInfo, UserService],
+  providers: [HttpInfo, UserService, MainCanActiveGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
