@@ -57,6 +57,13 @@ $full-height: calc(100% - 150px);
     @include normal-card;
 
     height: $full-height;
+
+    .notify-nothing {
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .task-card {
