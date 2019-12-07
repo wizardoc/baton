@@ -33,7 +33,8 @@ export class WebSocketService {
   private conn: WebSocket;
 
   notifications: NotifyPayload[] = [];
-  loggers: LoggerPayload[] = [];
+  dispatcherLogs: LoggerPayload[] = [];
+  dockerLogs: LoggerPayload[] = [];
   tasks: TaskPayload[] = [];
 
   constructor(private httpInfo: HttpInfo, private httpClient: HttpClient) {
@@ -65,17 +66,25 @@ export class WebSocketService {
       return;
     }
 
-    const CONTAINER_MAP = {
-      [EventType.LOGGER]: this.loggers,
-      [EventType.NOTIFY]: this.notifications
-    };
-    const container = CONTAINER_MAP[type];
     let result = payload;
+    const LOGGER_MAP = {
+      [LoggerType.DOCKER]: this.dockerLogs,
+      [LoggerType.DISPATCHER]: this.dispatcherLogs
+    };
 
     if (type === EventType.NOTIFY) {
       result.type = NOTIFY_CLASS_TYPE[payload.type];
+      this.notifications.push(result);
+
+      return;
     }
 
-    container.push(result);
+    if (type === EventType.LOGGER) {
+      const { logType, content } = payload;
+
+      LOGGER_MAP[logType].push(content);
+
+      return;
+    }
   }
 }

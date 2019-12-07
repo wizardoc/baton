@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { WebSocketService, HttpInfo } from "src/services";
+import { WebSocketService, HttpInfo } from "../../services";
 import { HttpClient } from "@angular/common/http";
+import AnsiUp from "ansi_up";
+import { DomSanitizer } from "@angular/platform-browser";
 
 type LogType = "docker" | "dispatcher";
 
@@ -38,7 +40,8 @@ export class PanelComponent implements OnInit {
   constructor(
     private websocketService: WebSocketService,
     private httpClient: HttpClient,
-    private httpInfo: HttpInfo
+    private httpInfo: HttpInfo,
+    private sanitized: DomSanitizer
   ) {}
 
   ngOnInit() {}
@@ -65,5 +68,15 @@ export class PanelComponent implements OnInit {
 
   get tasks() {
     return this.websocketService.tasks;
+  }
+
+  get dispatcherLogs() {
+    console.info(
+      new AnsiUp().ansi_to_html(this.websocketService.dispatcherLogs.join("\n"))
+    );
+
+    return this.sanitized.bypassSecurityTrustHtml(
+      new AnsiUp().ansi_to_html(this.websocketService.dispatcherLogs.join("\n"))
+    );
   }
 }

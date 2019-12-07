@@ -12,11 +12,11 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.info("aaaaa");
+    const { token } = this.userService;
 
     return next.handle(
       req.clone({
-        headers: req.headers.set("Authentication", this.userService.token)
+        headers: token ? req.headers.set("Authentication", token) : req.headers
       })
     );
   }

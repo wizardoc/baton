@@ -62,6 +62,10 @@ $full-height: calc(100% - 150px);
 
     width: 500px;
     height: $full-height;
+
+    .logger-content {
+      height: calc(100% - 80px);
+    }
   }
 
   .notify-card {
@@ -108,6 +112,10 @@ $full-height: calc(100% - 150px);
     .task-content {
       @include scroll-content;
 
+      &::-webkit-scrollbar {
+        width: 0 !important;
+      }
+
       .task-item-card {
         @include base-card;
         @extend .selected;
@@ -118,4 +126,17 @@ $full-height: calc(100% - 150px);
 
 * {
   font-weight: 200;
+}
+
+.dispatcher-logs {
+  display: flex;
+  flex-direction: column-reverse;
+  height: calc(100% - 60px);
+  overflow-y: scroll;
+  margin-top: 10px;
+  white-space: pre-line;
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
 }
